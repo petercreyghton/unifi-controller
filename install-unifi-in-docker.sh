@@ -22,6 +22,10 @@ yum install -y docker-ce docker-ce-cli containerd.io
 systemctl enable --now docker
 docker run hello-world
 
+# disable SElinux
+setenforce 0
+sed -i 's/enforcing/permissive/' /etc/sysconfig/selinux
+
 # install docker-compose
 # https://docs.docker.com/compose/install/
 curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose

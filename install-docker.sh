@@ -13,6 +13,10 @@ systemctl enable --now iptables-services
 # DEV regel om alle verkeer inbound toe te staan - nog aanpassen voor alle benodigde poorten
 iptables -I INPUT -j ACCEPT
 
+# disable SElinux
+setenforce 0
+sed -i 's/enforcing/permissive/' /etc/sysconfig/selinux
+
 # install docker
 # https://docs.docker.com/engine/install/centos/
 yum install -y yum-utils
